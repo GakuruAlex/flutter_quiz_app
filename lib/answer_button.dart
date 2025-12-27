@@ -15,9 +15,23 @@ class AnswerButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
+            backgroundColor: WidgetStateColor.resolveWith(
+              (Set<WidgetState> states) {
+                if (states.contains(WidgetState.pressed)) {
+                  return Colors.red;
+                }
+                if (states.contains(WidgetState.hovered)) {
+                  return Colors.green;
+                }
+                return Colors.red;
+              },
+            ),
           ),
+
           child: Text(answers[i]),
-          onPressed: () {},
+          onPressed: () {
+            print('pressed $i');
+          },
         ),
       );
     }
