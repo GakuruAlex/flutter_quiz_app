@@ -33,6 +33,10 @@ class QuestionNav extends StatelessWidget {
             },
             chosenIcon: previous,
           ),
+        SizedBox(
+          width: 50,
+        ),
+
         if (_currentQuesitionIndex >= 0 &&
             _currentQuesitionIndex < questions.length - 1)
           QuizButton(
