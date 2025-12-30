@@ -25,7 +25,7 @@ class HomeUI extends StatelessWidget {
         ),
 
         QuizButton(
-          contentText: 'Start Quiz',
+          contentText: 'Start',
           switchScreen: quizScreen,
           chosenIcon: nextArrow,
         ),
