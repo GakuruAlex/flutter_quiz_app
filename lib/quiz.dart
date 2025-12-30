@@ -9,17 +9,11 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget? currentScreen;
-
-  @override
-  void initState() {
-    currentScreen = HomeUI(switchScreen);
-    super.initState();
-  }
+  var currentScreen = 'home-screen';
 
   void switchScreen() {
     setState(() {
-      currentScreen = const QuestionScreen();
+      currentScreen = 'questions-screen';
     });
   }
 
@@ -38,7 +32,11 @@ class _QuizState extends State<Quiz> {
               end: AlignmentGeometry.bottomRight,
             ),
           ),
-          child: Center(child: currentScreen),
+          child: Center(
+            child: currentScreen == 'home-screen'
+                ? HomeUI(switchScreen)
+                : QuestionScreen(),
+          ),
         ),
       ),
     );
