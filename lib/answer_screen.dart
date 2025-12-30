@@ -1,46 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quiz_app/models/quiz_question.dart';
 
 class AnswerScreen extends StatefulWidget {
-  const AnswerScreen({super.key, required this.currentQuestion});
-  final QuizQuestion currentQuestion;
+  const AnswerScreen({super.key, required this.answers});
+  final List<String> answers;
   @override
   State<AnswerScreen> createState() => _AnswerScreenState();
 }
 
 class _AnswerScreenState extends State<AnswerScreen> {
-  bool isChosen = false;
-  void isPressed() {
-    setState(() {
-      isChosen = !isChosen;
-    });
-  }
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Text(widget.currentQuestion.questionText),
-        ...widget.currentQuestion.answers.map(
-          (answer) => ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size(300, 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(8),
-              ),
-              backgroundColor: isChosen
-                  ? Color.fromARGB(255, 107, 15, 168)
-                  : Color.fromARGB(255, 255, 254, 240),
-              foregroundColor: isChosen
-                  ? Color.fromARGB(255, 255, 254, 240)
-                  : Color.fromARGB(255, 0, 0, 0),
+      spacing: 5.0,
+      children: List.generate(widget.answers.length, (index) {
+        final isSelected = index == selectedIndex;
+        return ElevatedButton(
+          onPressed: () {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          style: ElevatedButton.styleFrom(
+            fixedSize: Size(330, 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(8),
             ),
-
-            onPressed: isPressed,
-            child: Text(answer),
+            backgroundColor: isSelected
+                ? Color.fromARGB(255, 78, 13, 151)
+                : Color.fromARGB(255, 107, 15, 168),
+            foregroundColor: isSelected
+                ? Color.fromARGB(255, 223, 247, 7)
+                : Color.fromARGB(255, 251, 250, 252),
+            //padding: EdgeInsets.all(2),
+            alignment: Alignment.centerLeft,
           ),
-        ),
-      ],
+          child: Text(widget.answers[index]),
+        );
+      }),
     );
   }
 }
