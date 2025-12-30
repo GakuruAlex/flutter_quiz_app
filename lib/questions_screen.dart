@@ -41,11 +41,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
 
           children: [
-            Text(
-              _currentQuestion.questionText,
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 254, 240),
-                fontSize: 18,
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Text(
+                _currentQuestion.questionText,
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 254, 240),
+                  fontSize: 18,
+                ),
               ),
             ),
             const SizedBox(
