@@ -4,6 +4,7 @@ import 'package:flutter_quiz_app/quiz_button.dart';
 class HomeUI extends StatelessWidget {
   const HomeUI(this.quizScreen, {super.key});
   final void Function() quizScreen;
+  final IconData nextArrow = Icons.arrow_circle_right_outlined;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +24,11 @@ class HomeUI extends StatelessWidget {
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
 
-        QuizButton(contentText: 'Start Quiz', switchScreen: quizScreen),
+        QuizButton(
+          contentText: 'Start Quiz',
+          switchScreen: quizScreen,
+          chosenIcon: nextArrow,
+        ),
       ],
     );
   }
