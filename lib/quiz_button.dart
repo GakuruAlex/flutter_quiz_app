@@ -5,9 +5,11 @@ class QuizButton extends StatelessWidget {
     super.key,
     required this.contentText,
     required this.switchScreen,
+    required this.chosenIcon,
   });
   final String contentText;
   final void Function() switchScreen;
+  final IconData chosenIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class QuizButton extends StatelessWidget {
         foregroundColor: Color.fromARGB(255, 253, 252, 252),
       ),
       icon: Icon(
-        Icons.arrow_circle_right_outlined,
+        chosenIcon,
         color: Color.fromARGB(255, 248, 247, 247),
       ),
 
