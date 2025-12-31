@@ -42,7 +42,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 78, 13, 151),
       body: SafeArea(
-        minimum: EdgeInsets.all(20),
+        minimum: EdgeInsets.all(10),
         child: Column(
           mainAxisSize: MainAxisSize.max, // important
           children: [
@@ -62,7 +62,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             const SizedBox(height: 24),
             // Answers list (this gets the space)
             SizedBox(
-              height: 200,
+              height: 250,
               child: AnswersScreen(
                 answers: _currentQuestion.answers,
                 selectedAnswers: selectedAnswers,
