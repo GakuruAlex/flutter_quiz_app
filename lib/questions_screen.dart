@@ -16,11 +16,21 @@ class _QuestionScreenState extends State<QuestionScreen> {
   int _currentQuestionIndex = 0;
   QuizQuestion _currentQuestion = questions[0];
   List<int?> selectedAnswers = List.filled(questions.length, null);
+  final Map<int, List<String>> shuffledAnswers = {};
+
   @override
   void initState() {
     super.initState();
 
     _currentQuestion = questions[_currentQuestionIndex];
+  }
+
+  List<String> getShuffledAnswers(int questionIndex, List<String> answers) {
+    if (!shuffledAnswers.containsKey(questionIndex)) {
+      final shuffled = List<String>.from(answers)..shuffle();
+      shuffledAnswers[questionIndex] = shuffled;
+    }
+    return shuffledAnswers[questionIndex]!;
   }
 
   void isPressed(String page) {
@@ -64,7 +74,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
             SizedBox(
               height: 250,
               child: AnswersScreen(
-                answers: _currentQuestion.answers,
+                answers: getShuffledAnswers(
+                  _currentQuestionIndex,
+                  _currentQuestion.answers,
+                ),
                 selectedAnswers: selectedAnswers,
                 addAnswer: addAnswer,
                 currentQuestionIndex: _currentQuestionIndex,
