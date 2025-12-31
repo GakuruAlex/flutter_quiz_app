@@ -26,19 +26,20 @@ class _AnswersScreenState extends State<AnswersScreen> {
 
     return ListView.separated(
       itemCount: widget.answers.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 5),
+      separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (_, index) {
         return ElevatedButton(
           onPressed: () {
             widget.addAnswer(index);
           },
           style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(8),
+              borderRadius: BorderRadiusGeometry.circular(30),
             ),
             backgroundColor: selectedAnswer == index
-                ? const Color.fromARGB(255, 52, 3, 107)
-                : const Color.fromARGB(255, 107, 15, 168),
+                ? const Color.fromARGB(255, 136, 48, 236)
+                : const Color.fromARGB(255, 42, 4, 117),
             foregroundColor: selectedAnswer == index
                 ? const Color.fromARGB(255, 250, 247, 247)
                 : const Color.fromARGB(255, 251, 250, 252),
