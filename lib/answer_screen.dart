@@ -14,6 +14,8 @@ class _AnswerScreenState extends State<AnswerScreen> {
   Widget build(BuildContext context) {
     return Column(
       spacing: 5.0,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: List.generate(widget.answers.length, (index) {
         final isSelected = index == selectedIndex;
         return ElevatedButton(
