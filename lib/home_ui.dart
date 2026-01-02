@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app/quiz_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeUI extends StatelessWidget {
   const HomeUI({super.key, required this.switchScreen});
@@ -21,7 +22,7 @@ class HomeUI extends StatelessWidget {
 
         Text(
           'Learn Flutter The Fun Way!',
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: GoogleFonts.notoSansDisplay(fontSize: 24, color: Colors.white),
         ),
 
         QuizButton(
