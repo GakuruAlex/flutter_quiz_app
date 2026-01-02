@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswersScreen extends StatefulWidget {
   const AnswersScreen({
@@ -45,7 +46,10 @@ class _AnswersScreenState extends State<AnswersScreen> {
                 : const Color.fromARGB(255, 251, 250, 252),
             alignment: Alignment.centerLeft,
           ),
-          child: Text(widget.answers[index]),
+          child: Text(
+            widget.answers[index],
+            style: GoogleFonts.notoSansDisplay(fontSize: 17.0),
+          ),
         );
       },
     );
