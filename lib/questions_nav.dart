@@ -14,7 +14,7 @@ class QuestionNav extends StatelessWidget {
   final int _currentQuesitionIndex;
   final IconData previous;
   final IconData next;
-  final Function isPressed;
+  final Function(String) isPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,9 @@ class QuestionNav extends StatelessWidget {
             _currentQuesitionIndex <= questions.length)
           QuizButton(
             contentText: 'Previous',
-            switchScreen: () {
-              isPressed('prev');
-            },
+            switchScreen: isPressed,
             chosenIcon: previous,
+            page: 'prev',
           ),
         SizedBox(
           width: 50,
@@ -40,10 +39,9 @@ class QuestionNav extends StatelessWidget {
             _currentQuesitionIndex < questions.length - 1)
           QuizButton(
             contentText: 'Next',
-            switchScreen: () {
-              isPressed('next');
-            },
+            switchScreen: isPressed,
             chosenIcon: next,
+            page: 'next',
           ),
       ],
     );

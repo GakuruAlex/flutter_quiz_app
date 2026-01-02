@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app/answers_widget.dart';
-import 'package:flutter_quiz_app/data/questions.dart';
 import 'package:flutter_quiz_app/models/quiz_question.dart';
 import 'package:flutter_quiz_app/questions_nav.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen({
+    super.key,
+    required this.switchScreen,
+    required this.selectedAnswers,
+    required this.shuffledAnswers,
+    required this.currentQuestionIndex,
+    required this.currentQuestion,
+  });
+  final void Function(String) switchScreen;
+  final List<String> selectedAnswers;
+  final Map<int, List<String>> shuffledAnswers;
+  final int currentQuestionIndex;
+  final QuizQuestion currentQuestion;
+
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
@@ -13,37 +25,19 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   final IconData next = Icons.arrow_right_outlined;
   final IconData previous = Icons.arrow_left_outlined;
-  int _currentQuestionIndex = 0;
-  QuizQuestion _currentQuestion = questions[0];
-  List<int?> selectedAnswers = List.filled(questions.length, null);
-  final Map<int, List<String>> shuffledAnswers = {};
-
-  @override
-  void initState() {
-    super.initState();
-
-    _currentQuestion = questions[_currentQuestionIndex];
-  }
 
   List<String> getShuffledAnswers(int questionIndex, List<String> answers) {
-    if (!shuffledAnswers.containsKey(questionIndex)) {
+    if (!widget.shuffledAnswers.containsKey(questionIndex)) {
       final shuffled = List<String>.from(answers)..shuffle();
-      shuffledAnswers[questionIndex] = shuffled;
+      widget.shuffledAnswers[questionIndex] = shuffled;
     }
-    return shuffledAnswers[questionIndex]!;
-  }
-
-  void isPressed(String page) {
-    setState(() {
-      page == 'next' ? _currentQuestionIndex += 1 : _currentQuestionIndex -= 1;
-
-      _currentQuestion = questions[_currentQuestionIndex];
-    });
+    return widget.shuffledAnswers[questionIndex]!;
   }
 
   void addAnswer(int answerIndex) {
     setState(() {
-      selectedAnswers[_currentQuestionIndex] = answerIndex;
+      widget.selectedAnswers[widget.currentQuestionIndex] =
+          widget.shuffledAnswers[widget.currentQuestionIndex]![answerIndex];
     });
   }
 
@@ -61,7 +55,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                _currentQuestion.questionText,
+                widget.currentQuestion.questionText,
                 style: const TextStyle(
                   color: Color.fromARGB(255, 255, 254, 240),
                   fontSize: 18,
@@ -75,21 +69,21 @@ class _QuestionScreenState extends State<QuestionScreen> {
               height: 250,
               child: AnswersScreen(
                 answers: getShuffledAnswers(
-                  _currentQuestionIndex,
-                  _currentQuestion.answers,
+                  widget.currentQuestionIndex,
+                  widget.currentQuestion.answers,
                 ),
-                selectedAnswers: selectedAnswers,
+                selectedAnswers: widget.selectedAnswers,
                 addAnswer: addAnswer,
-                currentQuestionIndex: _currentQuestionIndex,
+                currentQuestionIndex: widget.currentQuestionIndex,
               ),
             ),
             const SizedBox(height: 24),
             // Navigation
             QuestionNav(
-              currentQuesitionIndex: _currentQuestionIndex,
+              currentQuesitionIndex: widget.currentQuestionIndex,
               previous: previous,
               next: next,
-              isPressed: isPressed,
+              isPressed: widget.switchScreen,
             ),
             const Spacer(),
           ],

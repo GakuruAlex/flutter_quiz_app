@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app/quiz_button.dart';
 
 class HomeUI extends StatelessWidget {
-  const HomeUI(this.quizScreen, {super.key});
-  final void Function() quizScreen;
+  const HomeUI({super.key, required this.switchScreen});
+  final void Function(String) switchScreen;
   final IconData nextArrow = Icons.arrow_circle_right_outlined;
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,9 @@ class HomeUI extends StatelessWidget {
 
         QuizButton(
           contentText: 'Start',
-          switchScreen: quizScreen,
+          switchScreen: switchScreen,
           chosenIcon: nextArrow,
+          page: 'questions-screen',
         ),
       ],
     );
