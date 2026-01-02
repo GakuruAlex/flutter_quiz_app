@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quiz_app/data/questions.dart';
 import 'package:flutter_quiz_app/home_ui.dart';
 import 'package:flutter_quiz_app/questions_screen.dart';
+import 'package:flutter_quiz_app/results_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -11,9 +13,13 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   var currentScreen = 'home-screen';
 
-  void switchScreen() {
+  Map<int, List<String>> shuffledAnswers = {};
+
+  List<String> selectedAnswers = List<String>.filled(questions.length, '');
+
+  void switchScreen(String screen) {
     setState(() {
-      currentScreen = 'questions-screen';
+      currentScreen = screen;
     });
   }
 
@@ -34,8 +40,14 @@ class _QuizState extends State<Quiz> {
           ),
           child: Center(
             child: currentScreen == 'home-screen'
-                ? HomeUI(switchScreen)
-                : QuestionScreen(),
+                ? HomeUI(switchScreen: switchScreen)
+                : currentScreen == 'questions_screen'
+                ? QuestionScreen(
+                    switchScreen: switchScreen,
+                    shuffledAnswers: shuffledAnswers,
+                    selectedAnswer: selectedAnswers,
+                  )
+                : ResultsScreen(),
           ),
         ),
       ),
