@@ -9,7 +9,7 @@ class AnswersScreen extends StatefulWidget {
     required this.currentQuestionIndex,
   });
   final List<String> answers;
-  final List<int?> selectedAnswers;
+  final List<String> selectedAnswers;
   final Function addAnswer;
   final int currentQuestionIndex;
 
@@ -18,7 +18,7 @@ class AnswersScreen extends StatefulWidget {
 }
 
 class _AnswersScreenState extends State<AnswersScreen> {
-  int? selectedAnswer;
+  String? selectedAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,10 @@ class _AnswersScreenState extends State<AnswersScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusGeometry.circular(30),
             ),
-            backgroundColor: selectedAnswer == index
+            backgroundColor: selectedAnswer == widget.answers[index]
                 ? const Color.fromARGB(255, 136, 48, 236)
                 : const Color.fromARGB(255, 42, 4, 117),
-            foregroundColor: selectedAnswer == index
+            foregroundColor: selectedAnswer == widget.answers[index]
                 ? const Color.fromARGB(255, 250, 247, 247)
                 : const Color.fromARGB(255, 251, 250, 252),
             alignment: Alignment.centerLeft,
