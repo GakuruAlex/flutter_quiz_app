@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app/answers_widget.dart';
 import 'package:flutter_quiz_app/models/quiz_question.dart';
 import 'package:flutter_quiz_app/questions_nav.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({
@@ -23,9 +24,6 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
-  final IconData next = Icons.arrow_right_outlined;
-  final IconData previous = Icons.arrow_left_outlined;
-
   List<String> getShuffledAnswers(int questionIndex, List<String> answers) {
     if (!widget.shuffledAnswers.containsKey(questionIndex)) {
       final shuffled = List<String>.from(answers)..shuffle();
@@ -56,9 +54,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 widget.currentQuestion.questionText,
-                style: const TextStyle(
+                style: GoogleFonts.notoSansDisplay(
                   color: Color.fromARGB(255, 255, 254, 240),
-                  fontSize: 18,
+                  fontSize: 22,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -81,8 +79,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
             // Navigation
             QuestionNav(
               currentQuesitionIndex: widget.currentQuestionIndex,
-              previous: previous,
-              next: next,
               isPressed: widget.switchScreen,
             ),
             const Spacer(),

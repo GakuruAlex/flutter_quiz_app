@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuizButton extends StatelessWidget {
   const QuizButton({
@@ -30,6 +31,10 @@ class QuizButton extends StatelessWidget {
 
       label: Text(
         contentText,
+        style: GoogleFonts.notoSansDisplay(
+          color: Color.fromARGB(255, 255, 255, 255),
+          fontSize: 18.0,
+        ),
       ),
       icon: Icon(
         chosenIcon,

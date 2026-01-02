@@ -6,18 +6,18 @@ class QuestionNav extends StatelessWidget {
   const QuestionNav({
     super.key,
     required int currentQuesitionIndex,
-    required this.previous,
-    required this.next,
     required this.isPressed,
   }) : _currentQuesitionIndex = currentQuesitionIndex;
 
   final int _currentQuesitionIndex;
-  final IconData previous;
-  final IconData next;
   final Function(String) isPressed;
 
   @override
   Widget build(BuildContext context) {
+    final IconData next = Icons.arrow_right_outlined;
+    final IconData previous = Icons.arrow_left_outlined;
+    final IconData results = Icons.grading_sharp;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
@@ -42,6 +42,13 @@ class QuestionNav extends StatelessWidget {
             switchScreen: isPressed,
             chosenIcon: next,
             page: 'next',
+          ),
+        if (_currentQuesitionIndex == questions.length - 1)
+          QuizButton(
+            contentText: 'Results',
+            switchScreen: isPressed,
+            chosenIcon: results,
+            page: 'results-screen',
           ),
       ],
     );
