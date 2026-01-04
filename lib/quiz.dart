@@ -67,7 +67,7 @@ class _QuizState extends State<Quiz> {
                     currentQuestionIndex: _currentQuestionIndex,
                     currentQuestion: _currentQuestion,
                   )
-                : ResultsScreen(),
+                : ResultsScreen(selectedAnswers: selectedAnswers),
           ),
         ),
       ),
