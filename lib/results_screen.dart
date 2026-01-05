@@ -11,6 +11,11 @@ class ResultsScreen extends StatelessWidget {
     color: Color.fromARGB(255, 255, 255, 255),
     fontSize: 18,
   );
+  final TextStyle correctAnswer = GoogleFonts.notoSansDisplay(
+    backgroundColor: Color.fromARGB(255, 5, 245, 205),
+    color: Color.fromARGB(255, 18, 19, 19),
+    fontSize: 16,
+  );
 
   final TextStyle userAnswersFont = GoogleFonts.notoSansDisplay(
     color: Color.fromARGB(255, 217, 6, 245),
@@ -39,6 +44,7 @@ class ResultsScreen extends StatelessWidget {
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) {
                 return Column(
+                  spacing: 10,
                   children: [
                     QuestionText(
                       selectedAnswers: selectedAnswers,
@@ -53,7 +59,7 @@ class ResultsScreen extends StatelessWidget {
                     ),
                     CorrectAnswer(
                       index: index,
-                      userAnswersFont: userAnswersFont,
+                      userAnswersFont: correctAnswer,
                     ),
                   ],
                 );
@@ -85,9 +91,23 @@ class CorrectAnswer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        Text(
-          questions[index].answers[0],
-          style: userAnswersFont,
+        TextButton(
+          style: ButtonStyle(
+            padding: WidgetStatePropertyAll(EdgeInsetsGeometry.all(5)),
+            fixedSize: WidgetStatePropertyAll(
+              Size.lerp(Size(0, 0), Size(280, 20), 1),
+            ),
+            backgroundColor: WidgetStatePropertyAll(
+              Color.fromARGB(255, 42, 247, 127),
+            ),
+            foregroundColor: WidgetStatePropertyAll(
+              Color.fromARGB(255, 18, 19, 19),
+            ),
+          ),
+          onPressed: () {},
+          child: Text(
+            questions[index].answers[0],
+          ),
         ),
       ],
     );
@@ -118,7 +138,7 @@ class QuestionText extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: questions[index].answers[0] == selectedAnswers[index]
-                ? Color.fromARGB(255, 153, 241, 142)
+                ? Color.fromARGB(255, 42, 247, 127)
                 : Color.fromRGBO(247, 149, 149, 1),
           ),
 
@@ -157,7 +177,22 @@ class ResultText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       children: [
-        Text(selectedAnswers[index], style: userAnswersFont),
+        TextButton(
+          style: ButtonStyle(
+            padding: WidgetStatePropertyAll(EdgeInsetsGeometry.all(5)),
+            fixedSize: WidgetStatePropertyAll(
+              Size.lerp(Size(0, 0), Size(280, 20), 1),
+            ),
+            backgroundColor: WidgetStatePropertyAll(
+              Color.fromARGB(255, 151, 1, 238),
+            ),
+            foregroundColor: WidgetStatePropertyAll(
+              Color.fromARGB(255, 18, 19, 19),
+            ),
+          ),
+          onPressed: () {},
+          child: Text(selectedAnswers[index]),
+        ),
       ],
     );
   }
