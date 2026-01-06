@@ -8,17 +8,20 @@ class QuizButton extends StatelessWidget {
     required this.switchScreen,
     required this.chosenIcon,
     required this.page,
+    required this.getScore,
   });
   final String contentText;
   final void Function(String) switchScreen;
   final IconData chosenIcon;
   final String page;
+  final Function getScore;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
       onPressed: () {
         switchScreen(page);
+        getScore();
       },
       style: OutlinedButton.styleFrom(
         foregroundColor: Color.fromARGB(255, 253, 252, 252),
