@@ -13,6 +13,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   var currentScreen = 'home-screen';
+  int score = 0;
 
   Map<int, List<String>> shuffledAnswers = {};
 
@@ -37,6 +38,22 @@ class _QuizState extends State<Quiz> {
     } else {
       setState(() {
         currentScreen = page;
+      });
+    }
+  }
+
+  void getScore() {
+    if (selectedAnswers.length == questions.length) {
+      int total = 0;
+
+      for (var i = 0; i < questions.length; i++) {
+        if (questions[i].answers[0] == selectedAnswers[i]) {
+          total += 1;
+        }
+      }
+
+      setState(() {
+        score = total;
       });
     }
   }
@@ -66,8 +83,9 @@ class _QuizState extends State<Quiz> {
                     selectedAnswers: selectedAnswers,
                     currentQuestionIndex: _currentQuestionIndex,
                     currentQuestion: _currentQuestion,
+                    getScore: getScore,
                   )
-                : ResultsScreen(selectedAnswers: selectedAnswers),
+                : ResultsScreen(selectedAnswers: selectedAnswers, score: score),
           ),
         ),
       ),

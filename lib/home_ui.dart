@@ -30,6 +30,7 @@ class HomeUI extends StatelessWidget {
           switchScreen: switchScreen,
           chosenIcon: nextArrow,
           page: 'questions-screen',
+          getScore: () {},
         ),
       ],
     );
