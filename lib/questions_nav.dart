@@ -7,10 +7,14 @@ class QuestionNav extends StatelessWidget {
     super.key,
     required int currentQuesitionIndex,
     required this.isPressed,
+    required this.getScore,
+    required this.selectedAnswers,
   }) : _currentQuesitionIndex = currentQuesitionIndex;
 
   final int _currentQuesitionIndex;
   final Function(String) isPressed;
+  final void Function() getScore;
+  final List<String> selectedAnswers;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,7 @@ class QuestionNav extends StatelessWidget {
             switchScreen: isPressed,
             chosenIcon: previous,
             page: 'prev',
+            getScore: () {},
           ),
         SizedBox(
           width: 50,
@@ -42,13 +47,16 @@ class QuestionNav extends StatelessWidget {
             switchScreen: isPressed,
             chosenIcon: next,
             page: 'next',
+            getScore: () {},
           ),
-        if (_currentQuesitionIndex == questions.length - 1)
+        if (_currentQuesitionIndex == questions.length - 1 &&
+            selectedAnswers.length == questions.length)
           QuizButton(
             contentText: 'Results',
             switchScreen: isPressed,
             chosenIcon: results,
             page: 'results-screen',
+            getScore: getScore,
           ),
       ],
     );

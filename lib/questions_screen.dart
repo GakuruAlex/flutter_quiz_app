@@ -12,12 +12,14 @@ class QuestionScreen extends StatefulWidget {
     required this.shuffledAnswers,
     required this.currentQuestionIndex,
     required this.currentQuestion,
+    required this.getScore,
   });
   final void Function(String) switchScreen;
   final List<String> selectedAnswers;
   final Map<int, List<String>> shuffledAnswers;
   final int currentQuestionIndex;
   final QuizQuestion currentQuestion;
+  final void Function() getScore;
 
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
@@ -80,6 +82,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
             QuestionNav(
               currentQuesitionIndex: widget.currentQuestionIndex,
               isPressed: widget.switchScreen,
+              getScore: widget.getScore,
+              selectedAnswers: widget.selectedAnswers,
             ),
             const Spacer(),
           ],
