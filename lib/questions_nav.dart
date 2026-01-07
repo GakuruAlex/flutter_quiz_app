@@ -49,8 +49,8 @@ class QuestionNav extends StatelessWidget {
             page: 'next',
             getScore: () {},
           ),
-        if (_currentQuesitionIndex == questions.length - 1 &&
-            selectedAnswers.length == questions.length)
+        if (!selectedAnswers.contains('') &&
+            _currentQuesitionIndex == questions.length - 1)
           QuizButton(
             contentText: 'Results',
             switchScreen: isPressed,
