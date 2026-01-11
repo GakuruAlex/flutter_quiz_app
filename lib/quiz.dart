@@ -85,7 +85,11 @@ class _QuizState extends State<Quiz> {
                     currentQuestion: _currentQuestion,
                     getScore: getScore,
                   )
-                : ResultsScreen(selectedAnswers: selectedAnswers, score: score),
+                : ResultsScreen(
+                    selectedAnswers: selectedAnswers,
+                    score: score,
+                    switchScreen: switchScreen,
+                  ),
           ),
         ),
       ),
