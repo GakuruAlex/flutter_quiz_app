@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz_app/data/questions.dart';
+import 'package:flutter_quiz_app/quiz_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultsScreen extends StatelessWidget {
@@ -7,11 +8,14 @@ class ResultsScreen extends StatelessWidget {
     super.key,
     required this.selectedAnswers,
     required this.score,
+    required this.switchScreen,
   });
 
   final List<String> selectedAnswers;
 
   final int score;
+  final IconData restart = Icons.restart_alt;
+  final void Function(String) switchScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +79,13 @@ class ResultsScreen extends StatelessWidget {
                 ),
               ),
             ),
+          ),
+          QuizButton(
+            chosenIcon: restart,
+            contentText: 'Restart',
+            page: 'questions-screen',
+            switchScreen: switchScreen,
+            getScore: () {},
           ),
         ],
       ),
