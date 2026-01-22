@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_quiz_app/data/questions.dart';
 import 'package:flutter_quiz_app/home_ui.dart';
 import 'package:flutter_quiz_app/models/quiz_question.dart';
@@ -46,6 +47,8 @@ class _QuizState extends State<Quiz> {
           _currentQuestionIndex = 0;
           _currentQuestion = questions[_currentQuestionIndex];
         });
+      } else if (page == "quit-screen") {
+        SystemNavigator.pop();
       }
     }
   }
