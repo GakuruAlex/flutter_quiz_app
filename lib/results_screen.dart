@@ -15,6 +15,7 @@ class ResultsScreen extends StatelessWidget {
 
   final int score;
   final IconData restart = Icons.restart_alt;
+  final IconData quit = Icons.stop;
   final void Function(String) switchScreen;
 
   @override
@@ -80,12 +81,30 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
           ),
-          QuizButton(
-            chosenIcon: restart,
-            contentText: 'Restart',
-            page: 'home-screen',
-            switchScreen: switchScreen,
-            getScore: () {},
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+              QuizButton(
+                chosenIcon: restart,
+                contentText: 'Restart',
+                page: 'home-screen',
+                switchScreen: switchScreen,
+                getScore: () {},
+              ),
+              SizedBox(
+                width: 50,
+              ),
+              QuizButton(
+                chosenIcon: quit,
+                contentText: 'Quit',
+                page: 'quit-screen',
+                switchScreen: switchScreen,
+                getScore: () {},
+              ),
+            ],
           ),
         ],
       ),
