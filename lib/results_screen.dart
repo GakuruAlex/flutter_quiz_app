@@ -83,7 +83,7 @@ class ResultsScreen extends StatelessWidget {
           QuizButton(
             chosenIcon: restart,
             contentText: 'Restart',
-            page: 'questions-screen',
+            page: 'home-screen',
             switchScreen: switchScreen,
             getScore: () {},
           ),
