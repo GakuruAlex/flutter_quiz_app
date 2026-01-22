@@ -39,6 +39,14 @@ class _QuizState extends State<Quiz> {
       setState(() {
         currentScreen = page;
       });
+      if (page == "home-screen") {
+        setState(() {
+          selectedAnswers = List<String>.filled(questions.length, '');
+          shuffledAnswers = {};
+          _currentQuestionIndex = 0;
+          _currentQuestion = questions[_currentQuestionIndex];
+        });
+      }
     }
   }
 
